@@ -17,8 +17,12 @@ app.use(express.json({ limit: "5mb" }, { extended: true }));
 app.use("/posts", postRoutes);
 app.use("/replies", replyRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Restful Forum API");
+});
+
 const URI = process.env.DB_CONNECTION;
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(URI, {
